@@ -16,7 +16,22 @@ condition = data["query"]["results"]["channel"]["item"]["condition"]["text"]
 
 temp = int(temp)
 
+condition = str(condition).lower()
 
+conditionEmoji = ""
+
+if ("rain" in condition or "showers" in condition or "drizzle" in condition):
+	conditionEmoji=":rain:"
+elif ("sun" in condition or "fair" in condition or "clear" in condition):
+	conditionEmoji=":sunny:"
+elif ("cloud" in condition):
+	conditionEmoji=":cloud:"
+elif "snow" in condition:
+	conditionEmoji = ":snowflake"
+elif ("thunder" in condition or "tornado" in condition):
+	conditionEmoji = ":zap:"
+
+# Determine colour of the temperature
 if(temp<20 ):
 	colorStatus="blue"
 elif (temp>20 and temp < 30):
@@ -24,4 +39,7 @@ elif (temp>20 and temp < 30):
 else:
 	colorStatus="red" 
 
-print num2words(temp)+  " degrees and " + condition.lower() + "| color = " + colorStatus
+# Determine emoji for condition
+
+	conditionEmoji = ":umbrella:"
+print num2words(temp)+  " degrees and " + condition + " " +  conditionEmoji + " | color = " + colorStatus
